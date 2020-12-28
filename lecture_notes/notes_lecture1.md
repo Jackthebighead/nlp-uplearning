@@ -1,6 +1,6 @@
 # Lecture 1: Intro & WordVectors
 
-- ### **1. Languages**
+- ### **Languages**
     - languages is a system self-defined by human
     - languages conveys knowledge
     - language is a compression
