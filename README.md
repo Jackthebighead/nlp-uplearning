@@ -7,7 +7,7 @@ This is my personal learning process of this course contains the following parts
 - codes on assignments and experiments.
 
 ### Resources 
-`Here I sort my learning resources during this course`
+Here I sort my learning resources during this course
 - Main: NLP basic knowledge based on Stanford CS224n
     - CS224n official video, 2019 Winter
         - [CS224n official video](https://online.stanford.edu/artificial-intelligence/free-content?category=All&course=6097&page=0)
