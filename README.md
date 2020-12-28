@@ -1,4 +1,4 @@
-# Learning Process for Stanford CS224n Natural Language Processing
+# Learning Process for Stanford CS224n NLP
 `Author: YUAN Yanzhe @Jackthebighead`
 
 ### Introduction
