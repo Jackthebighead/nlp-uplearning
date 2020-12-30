@@ -181,3 +181,78 @@
 
             - comparison experiments: the training time is hard to keep, for GloVe is iterations while w2v is the numbers of training epochs. the paper find adding negative samples actually increases the number of training sords and thus analogous to extra epochs.
             - test on the analogy tasks. w2v performs a drawback as the number of negative samples increases, mainly because negative sampling does not approximate the target probability distribution well.
+
+- ### **Material 2: Improving Distributional Similarity with Lessons Learned from Word Embeddings**
+    - link: [https://www.aclweb.org/anthology/Q15-1016.pdf](https://www.aclweb.org/anthology/Q15-1016.pdf)
+    - The performance improvement of word embedding is largely due to the specific system design selection and super parameter optimization, rather than the word embedding algorithm itself
+
+- ### **Material 3: Evaluation methods for unsupervised word embeddings**
+    - link: [https://www.aclweb.org/anthology/D15-1036.pdf](https://www.aclweb.org/anthology/D15-1036.pdf)
+    - two main schemes of evaluating the quality of word embeddings
+        - extrinsic evaluation
+            - use word embeddings in downstream tasks and measure the quality of word embeddings by the performance of downstream tasks.
+            - downstream tasks are like name entity recognition, POS-tagging.
+            - disadvantage: only one method of evaluation and has uncertainty with other evaluation methods.
+        - intrinsic evaluation
+            - evaluating word embeddings from semantic and syntactic perspectives.
+    - Embedding
+        - the mapping of word and the numerical vector.
+        - this paper uses cosine similarity to calculate the distance between word embeddings.
+        - every experiments are conducted using 6 popular unsupervised word embedding methods
+            - CBOW, C&W: motivated by a probabilistic prediction approach, formulate the embedding task as that of ﬁnding a representation that is good at predicting w from the context representations.
+            - GloVe, Hellinger PCA(H-PCA), TSCCA(CCA) and Sparse Random Projections: follow a reconstruction approach: word embeddings
+            should be able to capture as much relevant information from the original co-occurrence matrix as possible.
+    - Intrinsic evaluation
+        - absolute intrinsic evaluation
+            - embeddings are evaluated individually and only their ﬁnal scores are compared
+            - evaluation from 4 following aspects
+                - relatedness: relatedness is the cosine similarity between word embeddings. the similarity score is human-defined, Spearman or Person correlation co-efficiency usually.
+                - analogy: given (a,b) and (x,y) with a,b,x and map y.
+                - categorization: cluster words and classify every word. the similarity score is based on the accuracy of categorization.
+                - selected preference: The goal of evaluation is to determine whether a noun is more likely to be the subject or object of a verb.
+
+                <img src="pics_lecture2/Untitled 9.png" width = "500" height = "200" alt="d" align=center />
+
+        - comparative intrinsic evaluation
+            - this paper present a new scenario, comparative intrinsic evaluation, in which we ask people directly for their preferences among different embeddings. This paper demonstrate that we can achieve the same results as ofﬂine, absolute metrics using online, comparative metrics.
+            - this part of the evaluation uses 100 different query words, and measures the evaluation from
+                - the word frequency
+                - part of speech
+                - whether it is an abstract word
+                - KNN (k = 1,5,50)
+            - the query word and candidates from models are presented to users and users are asked to **artificially** select the **most similar words** to query word to calculate the score of each model word vector.
+
+              <img src="pics_lecture2/Untitled 10.png" width = "500" height = "200" alt="d" align=center />
+
+    - Coherence 一致性评估
+        - in this novel **coherence task** we assess whether groups of words in a small neighborhood in the embedding space are mutually related. (**intrusion task**)
+        - in this part, this paper consider that for a query word, two words with the highest semantic similarity and one interference word with unrelated semantics are artificially selected to see whether the above six embedding methods can find irrelevant words from four words, and the data set uses 100 query words with relative intrinsic evaluation.
+
+          <img src="pics_lecture2/Untitled 11.png" width = "300" height = "200" alt="d" align=center />
+
+    - Extrinsic evaluation
+        - conclusion: the assumption that there is a globally best word embedding for every downstream task does not hold.
+        - conclusion drawn from two tasks: Noun Phrase Chunking and Sentiment Classification.
+    - Discussions
+        - The word embedding originally only represents the semantic information of words, but the author expresses that the above embedding method more or less contains the word frequency information, and the nearest neighbor of query word is related to the word frequency. At the same time, the rationality of cosine similarity as a measure of word semantic similarity is questioned.
+            - Word frequency also interferes with the commonly-used cosine similarity measure.
+        - contribution:
+            - this paper present a novel evaluation framework based on direct comparisons between embeddings that provides more ﬁne-grained analysis and supports simple, crowdsourced relevance judgments. We also present a novel Coherence task that measures our intuition that neighborhoods in the embedding space should be semantically or syntactically related. We ﬁnd that extrinsic evaluations, although useful for highlighting speciﬁc aspects of embedding performance, should not be used as a proxy for generic quality.
+- ### **Material 4: A Latent Variable Model Approach to PMI-based Word Embeddings**
+    - link: [https://www.aclweb.org/anthology/Q16-1028.pdf](https://www.aclweb.org/anthology/Q16-1028.pdf)
+    - In this paper, the author proposes a latent variable model, which is the first attempt to explain the word class ratio arithmetic strictly.
+    - continuous latent variable model is called dimensionality reduction.
+    - continuous representation is better representative than discrete representation.
+- ### **Material 5: Linear Algebraic Structure ofWord Senses, with Applications to Polysemy**
+    - link: [https://transacl.org/ojs/index.php/tacl/article/viewFile/1346/320](https://transacl.org/ojs/index.php/tacl/article/viewFile/1346/320)
+    - 对于一词多义的向量表示研究，polysemous
+    - It is shown that multiple word senses reside in linear superposition within the word embedding.
+        - $V=\sum_{i=1}^{n}\alpha_iW_i+b$
+        - where n stands for n kinds of meaning of a polysemous, and sparse coding is learn another vector representation of polysemous words that can represent the original word using a linear formula.
+        - Simple sparse coding can recover vectors that approximately capture the senses.
+- ### **Material 6: On the Dimensionality ofWord Embedding**
+    - link: [https://papers.nips.cc/paper/2018/file/b534ba68236ba543ae44b22bd110a1d6-Paper.pdf](https://papers.nips.cc/paper/2018/file/b534ba68236ba543ae44b22bd110a1d6-Paper.pdf)
+    - This paper provides a theoretical understanding of word embeddings and the choice of vector dimensionality
+    - Based on the unitary-invariance of word embedding, this paper proposes the Pairwise Inner Product (PIP) loss, a novel metric on the dissimilarity between word embeddings.
+    - Using techniques from matrix perturbation theory, we reveal a fundamental bias-variance trade-off in dimensionality selection for word
+    embeddings. This may explain the optimal dimensionality selection based on PIP loss.
