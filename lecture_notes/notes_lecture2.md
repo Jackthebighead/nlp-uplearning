@@ -24,8 +24,9 @@
     - shuffle before every epoch
 - ### **Why not capture co-occurrence counts directly?**
     - co-occurrence matrix: two ways to construct
-        - window: use window around each word to capture both positional and semantic (context) information.
-        - document: use the whole corpus gives the general topic information of the word. It leads to the topic of Latent Semantic Analysis (LSA/LSI).
+        - **window based matrix**: use window around each word to capture both positional and semantic (context) information.
+        - **word-document based matrix**: use the whole corpus gives the general topic information of the word. It leads to the topic of Latent Semantic Analysis (LSA/LSI).
+           - large matrix  
     - window-based co-occurrence matrix
         - window size: 5-10 commonly.
         - symmetric: irrelevant whether left or right context. otherwise it's asymmetric.
@@ -43,8 +44,16 @@
 
                     - SVD: Single Value Decomposition.
                         - 奇异值分解
+                        - $X=U*\Sigma*V^T$
+                        - observe the singular values (the diago- nal entries in the resulting S matrix), and cut them off at some index k based on the desired percentage variance captured.
                         - retain only k singular best ranked values after decomposition.
-                    - other methods: Hacks to X
+                        - the dimensionaliry of the three matrix changes from $|v|*|v|*|v|*|v|*|v|*|v|$ to $|v|*|k|*|k|*|k|*|k|*|V|$, where |k|<|V|
+                    - Problems
+                        - costy to perform SVD.
+                        - requires some hacks on X for the imbalance of word frequency.
+                        - matrix is sparse since most words don't co-occur and the dimensionality is large.
+                        - new words input may change the dimensionality of the matrix.
+                    - Solutions
                         - scaling the counts in the cells.
                             - problem: scale to some words like 'the', 'he', etc. that are too frequent.
                         - ramped windows that count closer words more.
@@ -53,10 +62,12 @@
     - both word2vec and GloVe captures the co-occurrence information to embed the word into a vector.
     - **count based vs. direct prediction: two ways to do word embedding**
         - **direct prediction**
-            - word2vec
+            - a.k.a iteration-based
+            - word2vec is an example
             - use window-based training methods are such as SG and CBOW, learning the probability, ability of capturing complex linguistic schema.
         - **count based**
-            - LSA based on counts and decomposes the matrix based on SVD.
+            - a.k.a SVD based (details and optimizations are discussed in the previous chapter)
+            - LSA based on counts and decomposes the co-occurrence matrix based on **SVD**.
                 - make use of global information.
                 - more complex than GloVe.
 
