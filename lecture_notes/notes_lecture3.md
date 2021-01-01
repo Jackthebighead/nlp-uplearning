@@ -64,15 +64,18 @@
                 - sample several corrupt windows per true window. sum over all.
                     - similar to negative sampling in w2v
                 - train with SGD
-- ### **Calculus, Chain rules, etc.**
-    - skipped because they are fundamental
+- ### **Math on Calculus etc.**
+    - skipped because they are too fundamental.
+    - differential calculus, derivatives, Chain Rule, Jacobian Matrix
+    - vectorization, vectorized computing
+    - gradient descent and back propagation 
 - ### **Back Propagation**
 
     <img src="pics_lecture3/Untitled 6.png" width = "300" height = "150" alt="d" align=center />
 
     - Back propagation is technique that allows us to use the chain rule of differentiation to calculate loss gradients for any parameter used in the feed-forward computation on the model.
     - computational efficiency
-        - vector wise updates
+        - vector wise updates: **Vetorization**
         - save the intermediate result to reduce redundant computation in bp.
 - ### **NN: Tips and Tricks**
     - gradient check
