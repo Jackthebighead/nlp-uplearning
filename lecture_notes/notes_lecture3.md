@@ -1,4 +1,4 @@
-# Lecture 3: Word Window Classification, Nueral Network and Matrix Calculus
+# Lecture 3&4: Word Window Classification, Nueral Network, Back Propagation and Computing Graph
 
 - ### **Classifications in NLP**
     - Classification
