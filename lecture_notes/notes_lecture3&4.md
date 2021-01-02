@@ -120,6 +120,7 @@
 
                 - $\sigma(z)=\frac1{1+exp(-z)}$
                 - derivative: $\sigma'(z)=\sigma(z)(1-\sigma(z))$
+                - problems: gradient vanishing
             - tanh: similar to sigmoid but faster convergence, and output (-1,1).
 
                 <img src="pics_lecture3/Untitled 8.png" width = "200" height = "100" alt="d" align=center />
@@ -140,6 +141,7 @@
                 <img src="pics_lecture3/Untitled 11.png" width = "200" height = "100" alt="d" align=center />
 
                 - $rect(z)=max(z,0)$
+                - problems: dead neurons, are neurons that never turn on for any example in your entire training set, and will remain permanently dead. Neurons can also die during training, usually as a symptom of aggressive learning rates
                 - leaky ReLU: still a gradient when z<0
 
                     $leaky(z)=max(z,k*z)$
