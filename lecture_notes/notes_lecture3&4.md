@@ -74,9 +74,25 @@
     <img src="pics_lecture3/Untitled 6.png" width = "300" height = "150" alt="d" align=center />
 
     - Back propagation is technique that allows us to use the chain rule of differentiation to calculate loss gradients for any parameter used in the feed-forward computation on the model.
+        - bp is just taking derivatives and using the (generalized) chain rule.
+    - run the forward and back propagation on the computing graph
+        - a computing graph is the graph showing how the input go through the neural networks and output the results.
+        - an example
+
+        <img src="pics_lecture3/Untitled 14.png" width = "400" height = "250" alt="d" align=center />
+
+        - forward propagation
+            - run the forward propagation steps using the formulas and the input data.
+        - back propagation
+            - apply the chain rule for gradient update.
+                - $downstream\ gradient = upstream\ gradient*local\ gradient$
+                    - local gradient: the gradient of values in this layer
+                    - upstream gradient: the gradient accumulated from above layers
+                - **sum** the gradients got from different brunches. (e.g. $\frac{\partial f}{\partial y}=\frac{\partial f}{\partial a}\frac{\partial a}{\partial y}+\frac{\partial f}{\partial b}\frac{\partial b}{\partial y}$ since y forwards to both a and b in the forward propagation process.)
     - computational efficiency
         - vector wise updates: **Vetorization**
-        - save the intermediate result to reduce redundant computation in bp.
+        - re-use derivatives computed for higher layers in computing derivatives for lower layers: save the intermediate result to reduce redundant computation in bp.
+            -  $\zeta$ to represent the upstream gradient.
 - ### **NN: Tips and Tricks**
     - gradient check
         - numerically approximating gradients rather than analytically calculating it.
@@ -110,7 +126,7 @@
 
                 - $tanh(z)=\frac{exp(z)-exp(-z)}{exp(z)+exp(-z)}=2\sigma(2z)-1$
                 - derivative: $tanh'(z)=1-tanh^2(z)$
-            - hard tanh: computation less
+            - hard tanh: cheap computation.
 
                 <img src="pics_lecture3/Untitled 9.png" width = "200" height = "100" alt="d" align=center />
             - soft sign
@@ -119,7 +135,7 @@
 
                 - $softsign(z)=\frac z{1+|z|}$
                 - derivative: $softsign'(z)=\frac{sgn(z)}{(1+z)^2}$
-            - ReLU: Rectified Linear Unit, commonly used in CV
+            - ReLU: Rectified Linear Unit, commonly used in CV and other tasks in DL.
 
                 <img src="pics_lecture3/Untitled 11.png" width = "200" height = "100" alt="d" align=center />
 
@@ -158,6 +174,8 @@
                 - decrease over time: $\alpha(t)=\frac{\alpha_0\sigma}{max(t,\sigma)}$, where sigma is the time threshold.
                 - exponential decay: $\alpha(t)=\alpha_0e^{-kt}$
     - optimizations on parameter update
+        - SGD works just fine usually.
+        - for more complex nets and situations, we can choose a family of more sophisticated "adaptive" optimizers that scale the parameter adjustment by an accumulated gradient, instead of SGD.
         - Momentum updates: a variant of gradient descent inspired by momentum in physics.
 
             ```python
@@ -186,7 +204,7 @@
                 x += -learning_rate * dx / (np.sqrt(cache) + eps)
                 ```
 
-        - Adam: combines RMSProp with momentum, and a bias correlation.
+        - Adam: combines RMSProp with momentum, and a bias correlation. a very good choice.
 
             ```python
             # Update rule for Adam
