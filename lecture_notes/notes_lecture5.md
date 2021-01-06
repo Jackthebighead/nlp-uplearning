@@ -12,7 +12,7 @@
         - Intuitively, CFG disassemble sentences into a tree structure using grammar symbolization (POS: part of speech 词性). To be specific, leaves in the tree correspond to every word in the sentence while nodes in the tree correspond to phrase.
         - The idea is that sentences are constructed using progressively nested units
 
-        <img src="pics_lecture5/Untitled.png" width = "400" height = "150" alt="d" align=center />
+        <img src="pics_lecture5/Untitled.png" width = "400" height = "150" alt="d" text-align=center />
 
     - dependency structure
         - shows the relationship of which words (modify or are arguments of) depend on which other words
@@ -43,16 +43,18 @@
             - Mutilated body washes up on Rio beach to be used for Olympic beach volleyball: is be used.. depends on body or beach?
         - conclusion: **dependency paths identity semantic relations.**
 
-            <img src="pics_lecture5/Untitled 3.png" width = "400" height = "200" alt="d" align=center />
+            <img src="pics_lecture5/Untitled 3.png" width = "400" height = "200" alt="d" vertical-align=center />
 
 <br>
 
 ### **Dependency Parsing and Treebanks**
 - dependency parsing
-    - dependency is the dependent relationship (normally binary asymmetric relations (arrows)) between lexical items (words).
-    - dependency tree graph
-    - start from the head and, point to the dependent (the pointed one depends on the origin, e.g. the objective depends on the verb so there is an arrow from the verb to the objective).
+    - dependency is the dependent relationship between lexical items (words), and are often depcited as arrows going from the head (the superior) to the dependent (the modifier).
+    - input a sequence of words, output a dependency tree graph
     - usually add a root to make every non-fake word depends on sth.
+    - two major problems: learning and parsing
+        - learning: given a training set learn a parsing model to parse (语法分析) model to parse new data.
+        - parsing: given a parsing model to derive the optimal dependency graph
 - tree banks
     - Universal Dependency: the rise of annotated data
         - a general description/rule on dependency for every human language, **treebanks.**
@@ -80,7 +82,9 @@
         - pruning on hard constraints.
     - transition-based parsing
         - or called deterministic dependency parsing
-        - locally based
+        - relies on a state machine which defines the possible transitions to create the mapping from the input sentence or sequence to the dependency tree.
+        - learning problem: learn a model to predict the next state based  on the history.
+        - parsing problem: focus on how to build an optimal sequence of decisions.
 
 <br>
 
@@ -98,7 +102,7 @@
         - a set of actions and a set of dependency arcs.
     - the algorithm
 
-        <img src="pics_lecture5/Untitled 5.png" width = "300" height = "100" alt="d" align=center />
+        <img src="pics_lecture5/Untitled 5.png" width = "300" height = "100" alt="d" padding='0' align=center />
 
         - when fetching one from the buffer and compared it with the one in the top of the stack, there are 3 transition between states: shift means there may be no dependency so we move on to the next, left-arc and right-arc means there are dependency.
         - it can be regarded as the multiple classification task
@@ -114,7 +118,7 @@
 - MaltParser: ML way of dependency parsing
     - how to decide which action to perform in the next step?
         - **Machine Learning**
-        - features: top of the stack word, POS, first in the buffer word, POS, etc.
+        - feature selection: top of the stack word, POS, first in the buffer word, POS, the leftmost and rightmost children of the top of the stack,..., etc.
         - no searches like beam search
             - beam search: find b candidate for each step. but in the next round there are b*(size) data.
             - can keep k good parse results as prefixes at each step, it is helpful for the quality but there is a tradeoff between quality and the (speed, storage, and computation resources).
@@ -149,7 +153,7 @@
         - extract a set of tokens based on the stack and buffer positions
         - vectorize them (feature, word, POS, dependency labels)
         - concatenate as the final feature map
-    - NN only controls what decisions to make next, the parser structure is remained.
+    - NN only controls what decisions to make next, the parser structure, which is the greedy transition based neural dependency parser architecture is remained.
     - NN structure
 
         <img src="pics_lecture5/Untitled 9.png" width = "400" height = "200" alt="d" align=center />
