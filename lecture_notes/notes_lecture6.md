@@ -16,7 +16,7 @@
     - assumption: the next word depends only the (n-1) previous words
         - so the next word probability: $P(x^{t+1}|x^{t},x^{t-1},...,x^{1})=\frac{n-gram\ prob}{(n-1)-gram\ prob}=\frac{P(x^n,...,x^1)}{P(x^{n-1},...,x^1)}$
         - how to compute the probability?
-            - by counting in the large corpus: P(x) = count(x)
+            - by counting by counting the probability of occurrence of words in the large corpus: P(x) = count(x)
     - categories
         - unigram, bigram, trigram, 4-gram
     - problems of N-gram
