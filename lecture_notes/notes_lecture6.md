@@ -1,6 +1,6 @@
 # Lecture 6: Language Models and RNNs
 
-### Language Models
+### **Language Models**
 - A new language task: language models
     - why LM?
         - it is a benchmark task of understanding languages
@@ -64,7 +64,7 @@
 
 <br>
 
-### RNN
+### **RNN**
 - Character
 
     <img src="pics_lecture6/Untitled 2.png" width = "500" height = "250" alt="d" vertical-align=center />
