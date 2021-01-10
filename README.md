@@ -4,7 +4,10 @@
 ### Introduction
 This repository contains:
 - learning notes
+  - course notes and material notes
 - codes on assignments and experiments.
+- papers read during this course
+- PyTorch codes
 
 ### Resources 
 Here are my learning resources using during this course
