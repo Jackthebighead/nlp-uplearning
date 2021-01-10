@@ -17,7 +17,7 @@
                 - we can view this problems as how to learn P(x,a|y) where a is the alignment.
                     - alignment: the relationship of translation in a word-level, can be one-one, can be one-many or many-one as well.
 
-                        ![Lecture%208%20Machine%20Translation,%20Sequence-to-Sequenc%201180e68bf97d418a8b8bfe18d2ba3f86/Untitled.png](Lecture%208%20Machine%20Translation,%20Sequence-to-Sequenc%201180e68bf97d418a8b8bfe18d2ba3f86/Untitled.png)
+                        <img src="pics_lecture8/Untitled.png" width = "300" height = "150" alt="d" vertical-align=center />
 
                     - to learn alignments, we need learn many things like: a particular word corresponding to a particular word or a particular word corresponding to its fertilities.
                 - how to compute or optimize probability?
@@ -26,7 +26,7 @@
                     - this process is called Decoding
                         - it can be viewed as search a tree of hypothesis and do pruning to find the best path.
 
-                        ![Lecture%208%20Machine%20Translation,%20Sequence-to-Sequenc%201180e68bf97d418a8b8bfe18d2ba3f86/Untitled%201.png](Lecture%208%20Machine%20Translation,%20Sequence-to-Sequenc%201180e68bf97d418a8b8bfe18d2ba3f86/Untitled%201.png)
+                        <img src="pics_lecture8/Untitled 1.png" width = "500" height = "250" alt="d" vertical-align=center />
 
         - remarks on SMT: it is a complex system and a huge research field. the cost is its main problem, it may need huge amount of human effort to do things like feature engineering or adding extra knowledge.
 - Neural MT: NMT
@@ -36,14 +36,14 @@
         - it can be useful in many NLP tasks like: dialog, summarization, parsing and code generation.
         - details
 
-            ![Lecture%208%20Machine%20Translation,%20Sequence-to-Sequenc%201180e68bf97d418a8b8bfe18d2ba3f86/Untitled%202.png](Lecture%208%20Machine%20Translation,%20Sequence-to-Sequenc%201180e68bf97d418a8b8bfe18d2ba3f86/Untitled%202.png)
+            <img src="pics_lecture8/Untitled 2.png" width = "500" height = "300" alt="d" vertical-align=center />
 
             - **Encoder**
                 - produce an encoding of the sentence, a fixed-size "context (higher-level meaning) vector".
                 - in practice the Encoder usually consists of stacked RNNs like LSTM where the input of the next layer is the output of the current layer.
                     - Seq2Seq may do sth strange: like process the input in reverse order, this is because by doing this, the first output of Decoder will pay more attention on the last Encoder hidden states which will make it easier for Decoder to get started to generate the correct translation at a higher prob.
 
-                        ![Lecture%208%20Machine%20Translation,%20Sequence-to-Sequenc%201180e68bf97d418a8b8bfe18d2ba3f86/Untitled%203.png](Lecture%208%20Machine%20Translation,%20Sequence-to-Sequenc%201180e68bf97d418a8b8bfe18d2ba3f86/Untitled%203.png)
+                        <img src="pics_lecture8/Untitled 3.png" width = "300" height = "600" alt="d" vertical-align=center />
 
             - **Decoder**
                 - the Decoder is more complex, the Decoder should learn the ability to generate sentences (a LM!) based on the Encoder output as the initial hidden state.
@@ -52,7 +52,7 @@
                 - how to run Decoder? an <EOS> tag token is appended at the end of the input (as the sign of output generation), then we run the stacked layers of RNNs (LSTM in the pic downside), softmax the output as the translation. (also an <EOS> as the end of the output). the output is feed back in to the network as the input in the next time step, and repeated...
                     - after translating the whole sentence, we define a loss (averaging total CE loss, or sth) and bp it, and learn.
 
-                    ![Lecture%208%20Machine%20Translation,%20Sequence-to-Sequenc%201180e68bf97d418a8b8bfe18d2ba3f86/Untitled%204.png](Lecture%208%20Machine%20Translation,%20Sequence-to-Sequenc%201180e68bf97d418a8b8bfe18d2ba3f86/Untitled%204.png)
+                    <img src="pics_lecture8/Untitled 4.png" width = "300" height = "600" alt="d" vertical-align=center />
 
             - in the test time (generate translation), noticed that in the pic, the output of Encoder is the (last) hidden state vectors, so the input hidden state in Decoder is the output of the encoder.
                 - the final output is all the hidden state of the Decoder (let's view as every output is one word in the translation sentence).
@@ -61,7 +61,7 @@
                 - in this way we can directly learn P(y|x), no Bayes, so NMT is simpler and easier.
         - how to train?
 
-            ![Lecture%208%20Machine%20Translation,%20Sequence-to-Sequenc%201180e68bf97d418a8b8bfe18d2ba3f86/Untitled%205.png](Lecture%208%20Machine%20Translation,%20Sequence-to-Sequenc%201180e68bf97d418a8b8bfe18d2ba3f86/Untitled%205.png)
+            <img src="pics_lecture8/Untitled 5.png" width = "500" height = "300" alt="d" vertical-align=center />
 
             - a parallel corpus: English-French pair.
             - get target sentence as labels, input into Decoder, the loss function is the negative log probability of the correct word, the probability distribution is under the hidden state (output by the Encoder), then average the total loss as the Loss and bp it and learn.
@@ -72,14 +72,14 @@
             - ancestral sampling: sample the predicted words based on the conditional prob of the past word. it works well but has a high variance and low performance.
             - greedy decoding: generate the argmax word every time step in Decoder. stops when model produces <END> tag.
 
-                ![Lecture%208%20Machine%20Translation,%20Sequence-to-Sequenc%201180e68bf97d418a8b8bfe18d2ba3f86/Untitled%206.png](Lecture%208%20Machine%20Translation,%20Sequence-to-Sequenc%201180e68bf97d418a8b8bfe18d2ba3f86/Untitled%206.png)
+                <img src="pics_lecture8/Untitled 6.png" width = "400" height = "200" alt="d" vertical-align=center />
 
                 - problems: no draw back: 一错再错. (if the argmax output as the input of the next time step).
                 - solutions
                     - exhaustive search: try computing all possible sequences, far too expensive, although this method guarantees to find the optimal one.
                     - beam search: choose k candidates based on the scores (5 to 10 usually).
 
-                        ![Lecture%208%20Machine%20Translation,%20Sequence-to-Sequenc%201180e68bf97d418a8b8bfe18d2ba3f86/Untitled%207.png](Lecture%208%20Machine%20Translation,%20Sequence-to-Sequenc%201180e68bf97d418a8b8bfe18d2ba3f86/Untitled%207.png)
+                        <img src="pics_lecture8/Untitled 7.png" width = "500" height = "200" alt="d" vertical-align=center />
 
                         - not guarantees to find the optimal one
                         - the criterion of when to stop searching
@@ -94,7 +94,7 @@
     - variants of NN structure in NMT
         - Bidirectional RNNs
 
-            ![Lecture%208%20Machine%20Translation,%20Sequence-to-Sequenc%201180e68bf97d418a8b8bfe18d2ba3f86/Untitled%208.png](Lecture%208%20Machine%20Translation,%20Sequence-to-Sequenc%201180e68bf97d418a8b8bfe18d2ba3f86/Untitled%208.png)
+            <img src="pics_lecture8/Untitled 8.png" width = "300" height = "400" alt="d" vertical-align=center />
 
             - the final hidden state of Encoder is: $h=[h^{forward},h^{backward}]$
     - advantages in NMT
@@ -133,7 +133,7 @@
     - on each step of the Decoder, use direct connection to the Encoder to focus on a particular part of the source sequence.
 - Details:
 
-    ![Lecture%208%20Machine%20Translation,%20Sequence-to-Sequenc%201180e68bf97d418a8b8bfe18d2ba3f86/Untitled%209.png](Lecture%208%20Machine%20Translation,%20Sequence-to-Sequenc%201180e68bf97d418a8b8bfe18d2ba3f86/Untitled%209.png)
+    <img src="pics_lecture8/Untitled 9.png" width = "500" height = "300" alt="d" vertical-align=center />
 
     - for the first output in Decoder, dot product it with all hidden state in Encoder and pass the results through a softmax to get a probability distribution. The distribution is the attention weight and then the we weighted sum with all hidden outputs of Encoder to get the attention output. Finally, we concatenate (or do another operation) with the attention output and the Decoder output as the final output.
         - the attention output mostly contains information from the hidden states that received high attention.
@@ -156,7 +156,7 @@
         - the query-key-value model: the query is the word vector in the target (Decoder), and we view the word vectors in the source (Encoder) is a key-value pair where the key equals to the value (set different name just to distinguish the function in attention calculation).
             - so the attention process is: use query and key to calculate the attention weight, and then multiply the result with the value to calculate the attention output.
 
-        ![Lecture%208%20Machine%20Translation,%20Sequence-to-Sequenc%201180e68bf97d418a8b8bfe18d2ba3f86/Untitled%2010.png](Lecture%208%20Machine%20Translation,%20Sequence-to-Sequenc%201180e68bf97d418a8b8bfe18d2ba3f86/Untitled%2010.png)
+        <img src="pics_lecture8/Untitled 10.png" width = "500" height = "200" alt="d" vertical-align=center />
 
         - self-attention: self-attention measures the importance of the other words in the source with the current word in the source. it can be also described as the query-key-value model.
             - the self-attention process is: use query and key to calculate the **self-attention** weight to represent the importance of the other words towards the key, and then multiply the result with the value to calculate the **self-attention** output.
@@ -185,12 +185,12 @@
     - different attention mechanisms
         - global attention: in the Bahdanau et al. model, the classical attention uses concatenate the attention output and the original Decoder output as the final output $\hat h_i=f([h_i,c_i])$ (where h_i is the hidden state in Decoder and c_i is the attention output), which exists a problem of coverage. To issue this, Luong et al. uses the method of input-feeding, that is, use the $\hat h_i$ as the input of Decoder rather than the final output.
 
-            ![Lecture%208%20Machine%20Translation,%20Sequence-to-Sequenc%201180e68bf97d418a8b8bfe18d2ba3f86/Untitled%2011.png](Lecture%208%20Machine%20Translation,%20Sequence-to-Sequenc%201180e68bf97d418a8b8bfe18d2ba3f86/Untitled%2011.png)
+            <img src="pics_lecture8/Untitled 11.png" width = "500" height = "300" alt="d" vertical-align=center />
 
         - local attention: Luong et. al's model generate an align position (which means where the output word in Decoder may have alignments in the input sequence), and it uses a window to compute the context vector (only compute the attention weight&output within the window).
             - in general, only focus on a small subset, reduce the drawback of global attention which is expensive.
 
-            ![Lecture%208%20Machine%20Translation,%20Sequence-to-Sequenc%201180e68bf97d418a8b8bfe18d2ba3f86/Untitled%2012.png](Lecture%208%20Machine%20Translation,%20Sequence-to-Sequenc%201180e68bf97d418a8b8bfe18d2ba3f86/Untitled%2012.png)
+            <img src="pics_lecture8/Untitled 12.png" width = "500" height = "300" alt="d" vertical-align=center />
 
             - the window: [position-D,position+D].
 
@@ -218,7 +218,7 @@
     - paper: *Neural Machine Translation of Rare Word*
     - the key algorithm is called Byte Pair Encoding, it is a compression algorithm. it starts at character vocabulary, and make statistics on frequency n-gram character pairs and add to vocabulary.
 
-        ![Lecture%208%20Machine%20Translation,%20Sequence-to-Sequenc%201180e68bf97d418a8b8bfe18d2ba3f86/Untitled%2013.png](Lecture%208%20Machine%20Translation,%20Sequence-to-Sequenc%201180e68bf97d418a8b8bfe18d2ba3f86/Untitled%2013.png)
+        <img src="pics_lecture8/Untitled 13.png" width = "400" height = "200" alt="d" vertical-align=center />
 
 - character-based model
     - Ling et. al proposed a model based on characters for open-vocabulary representations on words.
@@ -233,4 +233,4 @@
         - target character-level generation: aims at the generation of OOV words, we have a separate deep LSTM that "translates" at the character level given the current word-level state.
             - whenever the word- level NMT produces an <unk>, the character-level decoder is asked to recover the correct surface form of the unknown target word.
 
-        ![Lecture%208%20Machine%20Translation,%20Sequence-to-Sequenc%201180e68bf97d418a8b8bfe18d2ba3f86/Untitled%2014.png](Lecture%208%20Machine%20Translation,%20Sequence-to-Sequenc%201180e68bf97d418a8b8bfe18d2ba3f86/Untitled%2014.png)
+        <img src="pics_lecture8/Untitled 14.png" width = "400" height = "300" alt="d" vertical-align=center />
