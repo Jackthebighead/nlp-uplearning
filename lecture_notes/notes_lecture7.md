@@ -1,6 +1,6 @@
 # Lecture 7: Vanishing Gradients and Fancy RNNs
 
-### Problems with RNN and Solutions
+### **Problems with RNN and Solutions**
 
 - Vanishing gradient problem
     - vanishing gradient problem happens at remote (very previous) hidden states in RNN.
@@ -104,7 +104,7 @@
 
 <br>
 
-### Fancy RNNS
+### **Fancy RNNS**
 
 - Bidirectional RNNs
 
@@ -124,7 +124,9 @@
     - skip connection or dense connection need to train deeper RNN as well (e.g. 8 layers).
     - e.g. transformers
 
-### Materials 1: Batches in RNN
+<br>
+
+### **Materials 1: Batches in RNN**
 
 - the batch in RNN
     - when use batches to training RNN, the batch can be view as (number of examples per batch,length of sentence), the difference length problem can be solve by padding.
@@ -137,7 +139,7 @@
 
 <br>
 
-### Materials 2: RNN applications
+### **Materials 2: RNN applications**
 
 - Machine Translation
     - RNN translation model
