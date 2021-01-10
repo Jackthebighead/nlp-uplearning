@@ -39,6 +39,7 @@
     - how to improve
         - window-based neural LM
             - just like the application in NER
+            - just a gram-based, or window-based feed forward network structure.
             - a fixed window neural LM
 
                  <img src="pics_lecture6/Untitled.png" width = "400" height = "150" alt="d" vertical-align=center />
