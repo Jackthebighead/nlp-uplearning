@@ -1,6 +1,6 @@
 # Lecture 8: Machine Translation, Sequence-to-Sequence and Attention
 
-### New Task: Machine Translation
+### **New Task: Machine Translation**
 
 - MT: a NLP task relies on sequential output. taking a sentence in one language as input and outputting the same sentence in another language.
 - Pre-neural MT: SMT
@@ -122,7 +122,9 @@
         - bias of translation
         - hard to capture common senses
 
-### Attention Mechanism
+<br>
+
+### **Attention Mechanism**
 
 - Definition
     - the problem on Seq2Seq: bottleneck problem
@@ -174,7 +176,9 @@
         - multiplicative attention: $e_i=s^TWh_i$, where W is a learnable parameter matrix.
         - additive attention: $e_i=v^T*tanh(W_1h_i+W_2s)$, where v is a weight vector, this process may change the dimensionality, and the dimension is the hyper-parameter.
 
-### Material 1: other models in NMT using Attention
+<br>
+
+### **Material 1: other models in NMT using Attention**
 
 - Luong et al. NMT model
     - paper: *Effective Approaches to Attention-based Neural Machine Translation*
@@ -203,7 +207,9 @@
     - *Incorporating Structural Alignment Biases into an Attentional Neural Translation Model*
         - 这篇论文通过引入其他传统语言学的思想来提高注意力表现。
 
-### Material 2: word and character-based models
+<br>
+
+### **Material 2: word and character-based models**
 
 - motivation: copy is not enough in solving out of vocabulary problem, we can turn to sub-word structure. one trend is to use Seq2Seq architecture based on characters, another is to use hybrid architecture of word and character.
     - OOV problem
