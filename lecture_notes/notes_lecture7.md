@@ -6,7 +6,7 @@
     - vanishing gradient problem happens at remote (very previous) hidden states in RNN.
     - sketch proof
 
-        ![Lecture%207%20Vanishing%20Gradients%20and%20Fancy%20RNNs%20a9da3537ec2d45bd8a811eb96e9c53d5/Untitled.png](Lecture%207%20Vanishing%20Gradients%20and%20Fancy%20RNNs%20a9da3537ec2d45bd8a811eb96e9c53d5/Untitled.png)
+        <img src="pics_lecture7/Untitled.png" width = "500" height = "250" alt="d" vertical-align=center />
 
         - as the picture shows, the gradient of the loss function over remote hidden state is decided by a chain of multiplications. if elements in the chain become small, the gradient will be too small to back propagate further.
         - to be more specifically
@@ -27,9 +27,9 @@
                 - the gate value is dynamic (learnable parameters in LSTM), and is a value range from [0,1].
             - details
 
-                ![Lecture%207%20Vanishing%20Gradients%20and%20Fancy%20RNNs%20a9da3537ec2d45bd8a811eb96e9c53d5/Untitled%201.png](Lecture%207%20Vanishing%20Gradients%20and%20Fancy%20RNNs%20a9da3537ec2d45bd8a811eb96e9c53d5/Untitled%201.png)
+                <img src="pics_lecture7/Untitled 1.png" width = "500" height = "350" alt="d" vertical-align=center />
 
-                ![Lecture%207%20Vanishing%20Gradients%20and%20Fancy%20RNNs%20a9da3537ec2d45bd8a811eb96e9c53d5/Untitled%202.png](Lecture%207%20Vanishing%20Gradients%20and%20Fancy%20RNNs%20a9da3537ec2d45bd8a811eb96e9c53d5/Untitled%202.png)
+                <img src="pics_lecture7/Untitled 2.png" width = "500" height = "250" alt="d" vertical-align=center />
 
                 - gates: how they are computed
                     - forget gate: controls what is kept and forget from previous cell state.
@@ -54,9 +54,9 @@
                     - second, we can notice that there are more additions in LSTM, which means there are more routes when we calculate the gradient based on the multi-variable chain rule. On the one hand, more routes means the change of being small gradient decreases. On the other hand, some routes such as $c^t=f^t*c^{t-1}+i^t*\hat c^t$, the gradient flow is stable so as to keep from vanishing.
         - GRU: gated recurrent units
 
-            ![Lecture%207%20Vanishing%20Gradients%20and%20Fancy%20RNNs%20a9da3537ec2d45bd8a811eb96e9c53d5/Untitled%203.png](Lecture%207%20Vanishing%20Gradients%20and%20Fancy%20RNNs%20a9da3537ec2d45bd8a811eb96e9c53d5/Untitled%203.png)
+            <img src="pics_lecture7/Untitled 3.png" width = "500" height = "250" alt="d" vertical-align=center />
 
-            ![Lecture%207%20Vanishing%20Gradients%20and%20Fancy%20RNNs%20a9da3537ec2d45bd8a811eb96e9c53d5/Untitled%204.png](Lecture%207%20Vanishing%20Gradients%20and%20Fancy%20RNNs%20a9da3537ec2d45bd8a811eb96e9c53d5/Untitled%204.png)
+            <img src="pics_lecture7/Untitled 4.png" width = "500" height = "250" alt="d" vertical-align=center />
 
             - a solution to simplify LSTM. no cell state, just use the hidden state.
             - details
@@ -83,11 +83,11 @@
         - solutions: add more direct connections (allowing the gradient to flow).
             - ResNet (skip-connection, only)
 
-                ![Lecture%207%20Vanishing%20Gradients%20and%20Fancy%20RNNs%20a9da3537ec2d45bd8a811eb96e9c53d5/Untitled%205.png](Lecture%207%20Vanishing%20Gradients%20and%20Fancy%20RNNs%20a9da3537ec2d45bd8a811eb96e9c53d5/Untitled%205.png)
+                <img src="pics_lecture7/Untitled 5.png" width = "300" height = "150" alt="d" vertical-align=center />
 
             - DenseNet (dense-connection)
 
-                ![Lecture%207%20Vanishing%20Gradients%20and%20Fancy%20RNNs%20a9da3537ec2d45bd8a811eb96e9c53d5/Untitled%206.png](Lecture%207%20Vanishing%20Gradients%20and%20Fancy%20RNNs%20a9da3537ec2d45bd8a811eb96e9c53d5/Untitled%206.png)
+                <img src="pics_lecture7/Untitled 6.png" width = "300" height = "150" alt="d" vertical-align=center />
 
                 - all previous layers are connected to the current layer.
             - HighwayNet, etc.
@@ -98,15 +98,17 @@
         - the cliff problem: if the gradient is steep, the update step may be too large to miss the optimal value.
     - solutions to the problem
 
-        ![Lecture%207%20Vanishing%20Gradients%20and%20Fancy%20RNNs%20a9da3537ec2d45bd8a811eb96e9c53d5/Untitled%207.png](Lecture%207%20Vanishing%20Gradients%20and%20Fancy%20RNNs%20a9da3537ec2d45bd8a811eb96e9c53d5/Untitled%207.png)
+        <img src="pics_lecture7/Untitled 7.png" width = "300" height = "150" alt="d" vertical-align=center />
 
         - gradient clipping: if the norm (||gradient||) is greater than a threshold, then scale (take a smaller step but in the same direction) the gradient down before gradient descent.
+
+<br>
 
 ### Fancy RNNS
 
 - Bidirectional RNNs
 
-    ![Lecture%207%20Vanishing%20Gradients%20and%20Fancy%20RNNs%20a9da3537ec2d45bd8a811eb96e9c53d5/Untitled%208.png](Lecture%207%20Vanishing%20Gradients%20and%20Fancy%20RNNs%20a9da3537ec2d45bd8a811eb96e9c53d5/Untitled%208.png)
+    <img src="pics_lecture7/Untitled 8.png" width = "500" height = "250" alt="d" vertical-align=center />
 
     - both left-right and right-left
     - forward RNN and backward RNN, then concatenate (or mean, etc) as the output.
@@ -114,7 +116,7 @@
     - powerful if having an entire sequence, e.g. BERT.
 - Multi-layer RNNs
 
-    ![Lecture%207%20Vanishing%20Gradients%20and%20Fancy%20RNNs%20a9da3537ec2d45bd8a811eb96e9c53d5/Untitled%209.png](Lecture%207%20Vanishing%20Gradients%20and%20Fancy%20RNNs%20a9da3537ec2d45bd8a811eb96e9c53d5/Untitled%209.png)
+    <img src="pics_lecture7/Untitled 9.png" width = "500" height = "250" alt="d" vertical-align=center />
 
     - also called stacked RNN
     - make RNN more deep, deep means more complex.
@@ -133,20 +135,21 @@
         - the input and output can be different in size
         - the inputs can be different in size as well by padding
 
+<br>
+
 ### Materials 2: RNN applications
 
 - Machine Translation
     - RNN translation model
 
-        ![Lecture%207%20Vanishing%20Gradients%20and%20Fancy%20RNNs%20a9da3537ec2d45bd8a811eb96e9c53d5/Untitled%2010.png](Lecture%207%20Vanishing%20Gradients%20and%20Fancy%20RNNs%20a9da3537ec2d45bd8a811eb96e9c53d5/Untitled%2010.png)
+        <img src="pics_lecture7/Untitled 10.png" width = "400" height = "200" alt="d" vertical-align=center />
 
         - the naive structural RNN MT model is that we use the last hidden state of the Encoder as the input hidden state of Decoder, the Decoder is also a simple RNN, and the output hidden state of Decoder based on the hidden state (add a softmax for probability distribution of the translated sentence) is the translation result.
         - there are lots of extensions
             - train different RNN for Encoder and Decoder
             - make Decoder more complex: the hidden output of Decoder depends on the combination of: the previous hidden state, the last hidden layer of corresponding position in Encoder, and the previous predicted output (hidden state) in Decoder.
 
-                ![Lecture%207%20Vanishing%20Gradients%20and%20Fancy%20RNNs%20a9da3537ec2d45bd8a811eb96e9c53d5/Untitled%2011.png](Lecture%207%20Vanishing%20Gradients%20and%20Fancy%20RNNs%20a9da3537ec2d45bd8a811eb96e9c53d5/Untitled%2011.png)
-
+                <img src="pics_lecture7/Untitled 11.png" width = "300" height = "300" alt="d" vertical-align=center />
             - go deep: stacked RNN
             - go bi-directional
             - go reversed: given a word sequence A B C in German whose transla- tion is X Y in English, instead of training the RNN using A B C → X Y, train it using C B A → X Y.
