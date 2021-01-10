@@ -42,7 +42,7 @@
             - just a gram-based, or window-based feed forward network structure.
             - a fixed window neural LM
 
-                 <img src="pics_lecture6/Untitled.png" width = "400" height = "150" alt="d" vertical-align=center />
+                <img src="pics_lecture6/Untitled.png" width = "400" height = "150" alt="d" vertical-align=center />
 
                 - details
                     - a window of pre-words and the current word
