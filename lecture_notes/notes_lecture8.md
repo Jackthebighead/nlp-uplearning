@@ -162,6 +162,7 @@
             - the self-attention process is: use query and key to calculate the **self-attention** weight to represent the importance of the other words towards the key, and then multiply the result with the value to calculate the **self-attention** output.
             - there is a equation: $Attention=Softmax(\frac{QK^T}{d_k^{\frac12}})V$
                 - when the calculating method is dot product and there is a scaling process before softmax, it is called **scaled dot-product attention.**
+                - why **dot-product**? When normalized, the more different the two multiplier are, the smaller the product is, so dot-product can represent similarity.
         - self-attention can be viewed as a specialty of attention where the target is the source so as to learn the self-representation well.
         - self-attention can be used to language representation, pre-trained language model, etc. attention can be used in tasks like NMT.
     - Bahdanau et al. NMT model, using attention in NMT task
