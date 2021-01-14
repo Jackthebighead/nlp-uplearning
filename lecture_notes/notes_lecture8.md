@@ -137,6 +137,7 @@
 
     - for the first output in Decoder, dot product it with all hidden state in Encoder and pass the results through a softmax to get a probability distribution. The distribution is the attention weight and then the we weighted sum with all hidden outputs of Encoder to get the attention output. Finally, we concatenate (or do another operation) with the attention output and the Decoder output as the final output.
         - the attention output mostly contains information from the hidden states that received high attention.
+        - the attention_output is attention_weight*context, intuitively means which parts of context is similar to the query, a context_based query, **indicating which context word is more likely to be similar to the query.**
     - in equations
         - we have hidden states in Encoder: $h_1,h_2...h_N$
         - at the time step t, we have the hidden output of Decoder $s_t$
