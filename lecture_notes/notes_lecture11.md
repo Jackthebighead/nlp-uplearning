@@ -49,6 +49,11 @@
             - if you wanna another convolutional layer, you should use local max-pooling instead.
         - how much context we look at one time step is important in CNN.
         - bigger filter, dilation or stacked CNN may be helpful
+        - **CNN Formula**
+          - $H_{out}=\frac{H_{in}+2*padding-(dilation*(kernel-1)+1)}{stride}+1$
+          - 其中，$\frac{H_{in}-kernel}{stride}+1$，可由数列推算得
+          - 对于分母，最终得kernel size为原kernel-1（扩张的个数）*扩张的范围+1（最后一行/列），最终得H_in得加上padding，所以formula如上。
+
 
 <br>
 
