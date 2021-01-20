@@ -4,7 +4,8 @@
 ### Introduction
 This repository contains:
 - learning notes: 
-  - course notes and material notes
+  - course notes (combined with paper notes) 
+  - material (that i read) notes
 - codes on assignments and experiments. 
 - papers read during this course
 - PyTorch codes
