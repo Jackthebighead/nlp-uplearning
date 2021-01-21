@@ -41,6 +41,7 @@
         - the key is that a  phoneme/character can be grouped by deep learning models, which is not a semantic unit traditionally (the meaning of h, a and t can represent what a 'hat' means?).
         - Deep learning models can construct character-group meaning to represent the semantic.
 - Purely character-level model: the second method.
+    - 以字符作为输入和输出的机器翻译系统
     - we have seen one in the last lecture: use very deep convolutional network for text classification: Conneau, Schwenk, Lecun, Barrault.EACL 2017
         - powerful because of the stacked convolutional layers
     - purely character-level NMT models
@@ -56,9 +57,10 @@
                 - encoder contains ConvNets with segment embeddings and highway networks
                     - input: letter sequence of character embeddings
                     - text convolution layer, max pooling with stride 5, the output is a segment embedding matrix.
+                      -  this is a char-sequence embedding not word
                     - multiple layers of highway network
                     - 理解：CNN的应用条件一般是要求卷积对象有局部相关性，而文本是满足的，之前我们用ConvNet作用于word级别的，可以有效识别关键phrases，而用在character-level就是可以识别word pieces信息，n-gram characters，有效构建character-level的LM&embeddings。
-                - decoder is a character-level GRU
+                - decoder is a **character-level** GRU
                     - the decoder is the key and the encoder didn't improve much
             - stronger character results with depth in LSTM Seq2Seq model
                 - deeper stacked of LSTM

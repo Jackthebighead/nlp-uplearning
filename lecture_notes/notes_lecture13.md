@@ -1,15 +1,15 @@
 # Lecture 13: Contextual Word Embeddings
 
-### Reflections on word representations
+### **Reflections on word representations**
 
 - pre-trained word vectors in early days: Word2Vec, GloVe, fastText.
     - btw, tips for unknown words with word vectors
-        - use <UNK> to represent the OOV word
-        - but we still need to distinguish different <UNK> to know the meaning
+        - use \<UNK> to represent the OOV word
+        - but we still need to distinguish different \<UNK> to know the meaning
         - 2 solution:
             - use character-level models
             - for OOV word
-                - if <UNK> exists not in the downstream task but in the pre-trained word embedding, use the pre-trained embedding.
+                - if \<UNK> exists not in the downstream task but in the pre-trained word embedding, use the pre-trained embedding.
                 - else, assign a vector randomly.
                 - not sure it will help a lot but it helps
 - the models we have learnt have two problems
@@ -19,7 +19,10 @@
 - then, people wake up and notice that text sensitive representation captured in the LMs embeddings is useful in tasks (downstream tasks) like the supervised sequence tagging setting.
     - rather than using old word-2-vector way.
 
-### Pre-ELMo and ELMO
+
+<br>
+
+### **Pre-ELMo and ELMO**
 
 - *Semi-supervised sequence tagging with bidirectional language models. 2017*
     - idea: we want meaning of word in context, but standardly learn task RNN only on small task-labeled data. (e.g. NER)
@@ -29,7 +32,7 @@
         - the traditional Tag LM model is Bi-LSTM-CNN-CRF based. word-embedding concatenated with CNN-based char embeddings are fed into the Bi-LSTM structure and then output to the CRF model to perform tagging.
         - here is the new model
 
-            ![Lecture%2013%20Contextual%20Word%20Embeddings%2095d72a4aa5924ff8bb89dc00a7d80329/Untitled.png](Lecture%2013%20Contextual%20Word%20Embeddings%2095d72a4aa5924ff8bb89dc00a7d80329/Untitled.png)
+            <img src="pics_lecture13/Untitled.png" width = "500" height = "300" alt="d" vertical-align=center />
 
             - token representation
                 - context-independent word-embeddings (Char-level CNN), concatenated with token embedding from word2vec.
@@ -67,14 +70,14 @@
             - use a residual connection
         - detail
 
-            ![Lecture%2013%20Contextual%20Word%20Embeddings%2095d72a4aa5924ff8bb89dc00a7d80329/Untitled%201.png](Lecture%2013%20Contextual%20Word%20Embeddings%2095d72a4aa5924ff8bb89dc00a7d80329/Untitled%201.png)
+            <img src="pics_lecture13/Untitled 1.png" width = "500" height = "400" alt="d" vertical-align=center />
 
             - stacked Bi-LSTM, with residual connections between layers.
             - for every token, generate $2L+1$ features (where L is the layers of Bi-LSTM).
                 - use every layers' output instead of only using the output from the top LSTM layer, which is usually did before.
             - then compress the features into a vector
 
-                ![Lecture%2013%20Contextual%20Word%20Embeddings%2095d72a4aa5924ff8bb89dc00a7d80329/Untitled%202.png](Lecture%2013%20Contextual%20Word%20Embeddings%2095d72a4aa5924ff8bb89dc00a7d80329/Untitled%202.png)
+                <img src="pics_lecture13/Untitled 2.png" width = "500" height = "100" alt="d" vertical-align=center />
 
             - for downstream tasks
                 - commonly, given a sequence of tokens (t1, . . . , tN), it is standard to form a context-independent token representation xk for each token position using pre-trained word embeddings and optionally character-based representations. Then, the model forms a context-sensitive representation hk, typically using either bidirectional RNNs, CNNs, or feed forward networks.
@@ -82,9 +85,11 @@
                 - further improvements also found in concatenating ELMo vectors with contextual hidden output h_k and feed to classifiers.
         - applications: sequence tagging, etc.
 
-            ![Lecture%2013%20Contextual%20Word%20Embeddings%2095d72a4aa5924ff8bb89dc00a7d80329/Untitled%203.png](Lecture%2013%20Contextual%20Word%20Embeddings%2095d72a4aa5924ff8bb89dc00a7d80329/Untitled%203.png)
+            <img src="pics_lecture13/Untitled 3.png" width = "500" height = "400" alt="d" vertical-align=center />
 
-### ULMfit and onward
+<br>
+
+### **ULMfit and onward**
 
 - *Howard and Ruder (2018) Universal Language Model Fine-tuning for Text Classification.*
 - LM transferred for for text classification
@@ -93,7 +98,7 @@
 - idea: this paper proposes Universal Language Model Fine-tuning (ULMFiT), which pre-trains a language model (LM) on a large general-domain corpus and ﬁne-tunes it on the target task using novel techniques.
 - detail: 3 parts.
 
-    ![Lecture%2013%20Contextual%20Word%20Embeddings%2095d72a4aa5924ff8bb89dc00a7d80329/Untitled%204.png](Lecture%2013%20Contextual%20Word%20Embeddings%2095d72a4aa5924ff8bb89dc00a7d80329/Untitled%204.png)
+    <img src="pics_lecture13/Untitled 4.png" width = "500" height = "300" alt="d" vertical-align=center />
 
     - general-domain LM pre-training
         - use the state-of-the-art language model AWD-LSTM (a regular LSTM with no attention, short-cut connections, etc.). '1 GPU' model.
@@ -114,20 +119,22 @@
 - results:
     - text classification
 
-        ![Lecture%2013%20Contextual%20Word%20Embeddings%2095d72a4aa5924ff8bb89dc00a7d80329/Untitled%205.png](Lecture%2013%20Contextual%20Word%20Embeddings%2095d72a4aa5924ff8bb89dc00a7d80329/Untitled%205.png)
+        <img src="pics_lecture13/Untitled 5.png" width = "500" height = "100" alt="d" vertical-align=center />
 
     - the performance of transfer learning
 
-        ![Lecture%2013%20Contextual%20Word%20Embeddings%2095d72a4aa5924ff8bb89dc00a7d80329/Untitled%206.png](Lecture%2013%20Contextual%20Word%20Embeddings%2095d72a4aa5924ff8bb89dc00a7d80329/Untitled%206.png)
+        <img src="pics_lecture13/Untitled 6.png" width = "400" height = "200" alt="d" vertical-align=center />
 
     - the improvement: SCALE IT
 
-        ![Lecture%2013%20Contextual%20Word%20Embeddings%2095d72a4aa5924ff8bb89dc00a7d80329/Untitled%207.png](Lecture%2013%20Contextual%20Word%20Embeddings%2095d72a4aa5924ff8bb89dc00a7d80329/Untitled%207.png)
+        <img src="pics_lecture13/Untitled 7.png" width = "400" height = "200" alt="d" vertical-align=center />
 
         - GPT-2: (2019) TPU-based LMs.
         - all the latter 3 uses transformer architecture
 
-### Transformer architectures
+<br>
+
+### **Transformer architectures**
 
 - the motivation:
     - we want parallelization but RNNs are inherently sequential. we want faster so as to scaling.
@@ -139,7 +146,7 @@
 - task: MT with parallel corpus, predict each translated word, CE loss on softmax layer.
 - detail
 
-    ![Lecture%2013%20Contextual%20Word%20Embeddings%2095d72a4aa5924ff8bb89dc00a7d80329/Untitled%208.png](Lecture%2013%20Contextual%20Word%20Embeddings%2095d72a4aa5924ff8bb89dc00a7d80329/Untitled%208.png)
+    <img src="pics_lecture13/Untitled 8.png" width = "500" height = "500" alt="d" vertical-align=center />
 
     - Input: actual word representations are **byte-pair encodings (recall that in the subword system)** with positional encoding added.
         - positional encoding is used to solve the loss by replacing RNNs.
@@ -157,7 +164,7 @@
             - to capture different attention output from the sentence, make the embeddings more powerful contextually.
         - complete transformer block
 
-            ![Lecture%2013%20Contextual%20Word%20Embeddings%2095d72a4aa5924ff8bb89dc00a7d80329/Untitled%209.png](Lecture%2013%20Contextual%20Word%20Embeddings%2095d72a4aa5924ff8bb89dc00a7d80329/Untitled%209.png)
+            <img src="pics_lecture13/Untitled 9.png" width = "250" height = "300" alt="d" vertical-align=center />
 
             - input are byte-pair encodings
             - each of them has residual connection and LayerNorm (change the input features to have mean 0 and variance 1 per layer). ****
@@ -171,7 +178,9 @@
         - Encoder-Decoder attention: query from the previous Decoder layer, and keys&values from Encoder output.
         - 6 repeats on Decoder block
 
-### BERT
+<br>
+
+### **BERT**
 
 - *Pre-training of Deep Bidirectional Transformers for Language Understanding, 2018*
 - motivation
@@ -181,13 +190,13 @@
         - for example, there are 2 layers of Bi-LSTM, the output (cat[left,right]) of the first layer has the information of the future word in its direction, and it's been pushed to the second layer, which is a crosstalk. Thus the model learns the statistics rather than the real meaning.
     - solution: Bi-directional structure but words can't see themselves: **Mask LM**
 
-        ![Lecture%2013%20Contextual%20Word%20Embeddings%2095d72a4aa5924ff8bb89dc00a7d80329/Untitled%2010.png](Lecture%2013%20Contextual%20Word%20Embeddings%2095d72a4aa5924ff8bb89dc00a7d80329/Untitled%2010.png)
+        <img src="pics_lecture13/Untitled 10.png" width = "400" height = "100" alt="d" vertical-align=center />
 
         - mask out k% (usually 15%) of the input words and then predict the masked words.
         - the training objective is the CE loss on the predictions of the masked words.
 - the difference between BERT and GPT: all use transformer but GPT is unidirectional.
 
-    ![Lecture%2013%20Contextual%20Word%20Embeddings%2095d72a4aa5924ff8bb89dc00a7d80329/Untitled%2011.png](Lecture%2013%20Contextual%20Word%20Embeddings%2095d72a4aa5924ff8bb89dc00a7d80329/Untitled%2011.png)
+    <img src="pics_lecture13/Untitled 11.png" width = "500" height = "300" alt="d" vertical-align=center />
 
     - ELMo is bidirectional, but the left-right model and right-left model are trained separately, they just concatenate in the output. So no bidirectional context in training actually.
     - BERT uses bidirectional context to train the masked task.
@@ -196,7 +205,7 @@
     - **NSP**
 - input: sentence pair encoding
 
-    ![Lecture%2013%20Contextual%20Word%20Embeddings%2095d72a4aa5924ff8bb89dc00a7d80329/Untitled%2012.png](Lecture%2013%20Contextual%20Word%20Embeddings%2095d72a4aa5924ff8bb89dc00a7d80329/Untitled%2012.png)
+    <img src="pics_lecture13/Untitled 12.png" width = "500" height = "300" alt="d" vertical-align=center />
 
     - token embedding is the word pieces embedding. (recall from the subword model)
     - segment embedding: whether comes from the first sentence or sth
@@ -204,7 +213,7 @@
     - **the 3 representations are summed up as the final token representation. and input into transformer model.**
 - BERT architecture and training
 
-    ![Lecture%2013%20Contextual%20Word%20Embeddings%2095d72a4aa5924ff8bb89dc00a7d80329/Untitled%2013.png](Lecture%2013%20Contextual%20Word%20Embeddings%2095d72a4aa5924ff8bb89dc00a7d80329/Untitled%2013.png)
+    <img src="pics_lecture13/Untitled 13.png" width = "500" height = "300" alt="d" vertical-align=center />
 
     - architecture
         - BERT is a transformer Encoder
@@ -220,9 +229,9 @@
         - run the BERT for particular task by removing the top layer of original pre-training BERT which is the NSP and MaskLM and replace them with your specific task.
 - results
 
-    ![Lecture%2013%20Contextual%20Word%20Embeddings%2095d72a4aa5924ff8bb89dc00a7d80329/Untitled%2014.png](Lecture%2013%20Contextual%20Word%20Embeddings%2095d72a4aa5924ff8bb89dc00a7d80329/Untitled%2014.png)
+    <img src="pics_lecture13/Untitled 14.png" width = "400" height = "100" alt="d" vertical-align=center />
 
-    ![Lecture%2013%20Contextual%20Word%20Embeddings%2095d72a4aa5924ff8bb89dc00a7d80329/Untitled%2015.png](Lecture%2013%20Contextual%20Word%20Embeddings%2095d72a4aa5924ff8bb89dc00a7d80329/Untitled%2015.png)
+    <img src="pics_lecture13/Untitled 15.png" width = "400" height = "200" alt="d" vertical-align=center />
 
     - GLUE tasks, CoNLL2003, SQuAD etc.
 - same thing in CV like ResNet.
