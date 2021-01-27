@@ -93,6 +93,7 @@
         - Label smoothing
         - Auto-regressive decoding with beam search and length biasing
 
+
 <br>
 
 ### **Self-similarity, Image and Music Generation**

@@ -1,6 +1,6 @@
 # Lecture 16 Coreference Resolution
 
-### Coreference Resolution
+### **Coreference Resolution**
 
 - 共指消解
 - task: identify all mentions that refer to the same real world entity.
@@ -13,7 +13,9 @@
     - cluster the mentions: hard.
         - coreferece resolution it's actually a clustering task
 
-### Mention Detection
+<br>
+
+### **Mention Detection**
 
 - mention: span of text referring to some entity
 - categories and ways of detection
@@ -33,11 +35,12 @@
     - anaphora: when a term (anaphora) refers to another term (antecedent).
         - anaphora is a word that doesn't have independent reference, determined by antecedent.
 
-            ![Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled.png](Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled.png)
+            <img src="pics_lecture16/Untitled.png" width = "300" height = "50" alt="d" vertical-align=center />
 
     - comparison
 
-        ![Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%201.png](Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%201.png)
+        <img src="pics_lecture16/Untitled 1.png" width = "500" height = "250" alt="d" vertical-align=center />
+
 
         - not all noun phrases have reference 不是所有的名次都有所指代（现实世界的物体）
             - e.g. No dancer twisted her knee
@@ -45,7 +48,8 @@
         - not all anaphoric relations are coreferential 不是所有的anaphoric都是共指的。
             - we may loose the restriction as bridging anaphora. e.g. We went to see **a concert** last night. **The tickets** were really expensive.
 
-            ![Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%202.png](Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%202.png)
+            <img src="pics_lecture16/Untitled 2.png" width = "400" height = "250" alt="d" vertical-align=center />
+
 
         - cataphora
             - usually the antecedent comes before the anaphoric, looking backwards.
@@ -54,22 +58,25 @@
         - classical rule-based (pronominal anaphora resolution)
             - Hobbs' algorithm
 
-                ![Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%203.png](Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%203.png)
+                <img src="pics_lecture16/Untitled 3.png" width = "500" height = "350" alt="d" vertical-align=center />
+
 
                 - coreference for pronouns
             - example
 
-                ![Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%204.png](Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%204.png)
+                <img src="pics_lecture16/Untitled 4.png" width = "500" height = "300" alt="d" vertical-align=center />
+
 
             - this is only a baseline, we should improve to be better than it.
                 - but it's still a dumb algorithms, can't get right answers sometime.
 
-                    ![Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%205.png](Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%205.png)
+                    <img src="pics_lecture16/Untitled 5.png" width = "500" height = "100" alt="d" vertical-align=center />
 
             - knowledge-based coreference resolution
                 - Winograd Schema
 
-                    ![Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%206.png](Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%206.png)
+                    <img src="pics_lecture16/Untitled 6.png" width = "500" height = "100" alt="d" vertical-align=center />
+
 
                 - the improvement should be done in the area of knowledge establishing.
                 - as a way of measuring intellegence through turing test
@@ -77,12 +84,14 @@
             - idea: train a binary classifier that assigns every pair of mentions a probability of being coreferent: $P(m_i,m_j)$
             - in this example, 'she' looks for every possible candidate antecedents and decide which are coreferent with it.
 
-                ![Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%207.png](Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%207.png)
+                <img src="pics_lecture16/Untitled 7.png" width = "400" height = "200" alt="d" vertical-align=center />
+
 
             - training
                 - cross entropy loss
 
-                    ![Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%208.png](Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%208.png)
+                    <img src="pics_lecture16/Untitled 8.png" width = "400" height = "200" alt="d" vertical-align=center />
+
 
                 - negative samples
                 - traverse every mentions then traverse every previous mentions
@@ -90,18 +99,21 @@
                 - pick a threshold and add coreference links
                 - take the transitive closure to get the clustering
 
-                    ![Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%209.png](Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%209.png)
+                    <img src="pics_lecture16/Untitled 9.png" width = "400" height = "200" alt="d" vertical-align=center />
+
 
                 - but if one link is mistaken, may cause two clusters mistakenly clustered.
             - disadvantages of mention pair models: the model may predict all their upper-threshold candidate and add coreference links.
                 - train the model to predict only one antecedent
 
-                    ![Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%2010.png](Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%2010.png)
+                    <img src="pics_lecture16/Untitled 10.png" width = "400" height = "200" alt="d" vertical-align=center />
+
 
         - mention ranking
             - idea:
 
-                ![Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%2011.png](Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%2011.png)
+                <img src="pics_lecture16/Untitled 11.png" width = "400" height = "300" alt="d" vertical-align=center />
+
 
                 - assign each mention its highest scoring candidate antecedent according to the model.
                 - for those who has no candidate antecedent, link them with NA mention.
@@ -109,7 +121,8 @@
                 - optimization of mention pair modeling
             - training
 
-                ![Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%2012.png](Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%2012.png)
+                <img src="pics_lecture16/Untitled 12.png" width = "400" height = "200" alt="d" vertical-align=center />
+
 
             - testing
                 - pretty much the same as mention-pair model except each mention is assigned only on antecedent based on softmax.
@@ -117,12 +130,14 @@
                 - non-neural statistical classifier
                     - feature engineering: proper features
 
-                        ![Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%2013.png](Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%2013.png)
+                        <img src="pics_lecture16/Untitled 13.png" width = "400" height = "250" alt="d" vertical-align=center />
+
 
                 - simple neural network
                     - FFNN
 
-                        ![Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%2014.png](Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%2014.png)
+                        <img src="pics_lecture16/Untitled 14.png" width = "500" height = "300" alt="d" vertical-align=center />
+
 
                         - input: word embeddings and other features used in the statistical models.
                             - embedding: previous two words, first word, last word, head word, of each mention.
@@ -136,18 +151,21 @@
                             - then how to detect? considering every span of text directly.
                         - model
 
-                            ![Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%2015.png](Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%2015.png)
+                            <img src="pics_lecture16/Untitled 15.png" width = "400" height = "250" alt="d" vertical-align=center />
+
 
                             - word and char embedding
                             - Bi-LSTM
                             - span representation(sub-sequence)
 
-                                ![Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%2016.png](Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%2016.png)
+                                <img src="pics_lecture16/Untitled 16.png" width = "500" height = "100" alt="d" vertical-align=center />
+
 
                                 - $g_i=[x_{start},x_{end},\hat x_i,\phi(i)]$, accoding to the first and last word representation from hidden states of Bi-LSTM, attention-based average of the word embeddings in the span (to find the head word), and additional features.
                             - score: on every span
 
-                                ![Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%2017.png](Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%2017.png)
+                                <img src="pics_lecture16/Untitled 17.png" width = "300" height = "250" alt="d" vertical-align=center />
+
 
                             - train end to end, the whole coreference system
                         - problems:
@@ -158,37 +176,44 @@
             - coreference resolution is actually a clustering mission
             - we can use agglomerative clustring, bottom up
 
-                ![Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%2018.png](Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%2018.png)
+                <img src="pics_lecture16/Untitled 18.png" width = "400" height = "300" alt="d" vertical-align=center />
+
 
                 - use models to score which clusters merging is preferred
             - idea: mention pair decision is difficult while cluster pair decision is easier since there is more information in clusters.
             - *Clark & Manning, 2016*
             - details
 
-                ![Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%2019.png](Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%2019.png)
+                <img src="pics_lecture16/Untitled 19.png" width = "400" height = "300" alt="d" vertical-align=center />
+
 
                 - generate a mention pair representation, like from the hidden state of the FFNN model.
 
-                    ![Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%2020.png](Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%2020.png)
+                    <img src="pics_lecture16/Untitled 20.png" width = "300" height = "250" alt="d" vertical-align=center />
+
 
                 - then using pooling operation to represent the cluster pair
                 - score each cluster pair candidate based on: $s(merge[c_1,c_2]=u^Tr_c(c_1,c_2))$ where r is the matmul, u^t is the weight matrix.
                 - merge the proper scored clusters
                     - this merge operation is based on the last step of merging, so RL is used.
 
-### Evaluation
+<br>
+
+### **Evaluation**
 
 - many metrics: MUC, CEAF, LEA< B-CUBED, BLANC, or (often) averaging the metrics.
 - B-CUBED: for each metion, compute a precision and a recall, then average the indivisual Ps and Rs.
 
-    ![Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%2021.png](Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%2021.png)
+    <img src="pics_lecture16/Untitled 21.png" width = "400" height = "300" alt="d" vertical-align=center />
+
 
     - this metric is kind of tricky because you can assign which cluster should be compared with the gold cluster 1. (bipartite graph algos....)
 - OntoNotes dataset: 3000 documents labeled by humans
     - both EN and CH
 - performance
 
-    ![Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%2022.png](Lecture%2016%20Coreference%20Resolution%2060ead4aec6eb4f2683ffe56fc824905a/Untitled%2022.png)
+    <img src="pics_lecture16/Untitled 22.png" width = "400" height = "300" alt="d" vertical-align=center />
+
 
 - conclusion: a useful, challenging task.
 - Try out a coreference system yourself
