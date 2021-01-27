@@ -28,9 +28,10 @@
             - Dialogue: generation.
     - The Natural Language Decathlon (decaNLP)
 
-        ![Lecture%2017%20Multitask%20Learning%200188e02918c6454fb343a38a78d5e88d/Untitled.png](Lecture%2017%20Multitask%20Learning%200188e02918c6454fb343a38a78d5e88d/Untitled.png)
+        <img src="pics_lecture17/Untitled.png" width = "600" height = "350" alt="d" vertical-align=center />
 
-        ![Lecture%2017%20Multitask%20Learning%200188e02918c6454fb343a38a78d5e88d/Untitled%201.png](Lecture%2017%20Multitask%20Learning%200188e02918c6454fb343a38a78d5e88d/Untitled%201.png)
+
+        <img src="pics_lecture17/Untitled 1.png" width = "600" height = "200" alt="d" vertical-align=center />
 
         - transfer 10 different tasks as **QA** **formulasm**, then train and test.
         - multitask learning as question answering
@@ -47,7 +48,7 @@
                 - pointer switch mechanism: for each output word, a pointer is choosing to point among {question, context, external information} to generate the answer.
         - MQAN (Multitask Question Answering Network): [www.decaNLP.com](http://www.decanlp.com/)
 
-            ![Lecture%2017%20Multitask%20Learning%200188e02918c6454fb343a38a78d5e88d/Untitled%202.png](Lecture%2017%20Multitask%20Learning%200188e02918c6454fb343a38a78d5e88d/Untitled%202.png)
+            <img src="pics_lecture17/Untitled 2.png" width = "600" height = "300" alt="d" vertical-align=center />
 
             - encoding:
                 - fixed GloVe+character n-gram embedding
@@ -60,7 +61,7 @@
                 - have to have LSTMs
             - Auto-Regressive **Decoder**
 
-                ![Lecture%2017%20Multitask%20Learning%200188e02918c6454fb343a38a78d5e88d/Untitled%203.png](Lecture%2017%20Multitask%20Learning%200188e02918c6454fb343a38a78d5e88d/Untitled%203.png)
+                <img src="pics_lecture17/Untitled 3.png" width = "600" height = "400" alt="d" vertical-align=center />
 
                 - 自回归编码器：一个句子的生成过程首先根据概率分布生成第一个词，然后根据第一个词生成第二个词，然后根据前两个词生成第三个词，以此类推，直到生成整个句子。
                 - The autoregressive decoder uses fixed glove and character n-gram embedding as the initial answer input embedding. Then pass through two transformer layers and one LSTM layer to participate in the output of the last three layers of the encoder(i.e. the representation of the question and the context).
@@ -71,11 +72,11 @@
                     - gamma decides whether to copy from external vocabulary.
         - evaluation
 
-            ![Lecture%2017%20Multitask%20Learning%200188e02918c6454fb343a38a78d5e88d/Untitled%204.png](Lecture%2017%20Multitask%20Learning%200188e02918c6454fb343a38a78d5e88d/Untitled%204.png)
+            <img src="pics_lecture17/Untitled 4.png" width = "600" height = "400" alt="d" vertical-align=center />
 
             - performance
 
-                ![Lecture%2017%20Multitask%20Learning%200188e02918c6454fb343a38a78d5e88d/Untitled%205.png](Lecture%2017%20Multitask%20Learning%200188e02918c6454fb343a38a78d5e88d/Untitled%205.png)
+                <img src="pics_lecture17/Untitled 5.png" width = "600" height = "300" alt="d" vertical-align=center />
 
                 - +self attention
                 - +co attention
@@ -87,7 +88,7 @@
         - the training **strategies**
             - fully joint
 
-                ![Lecture%2017%20Multitask%20Learning%200188e02918c6454fb343a38a78d5e88d/Untitled%206.png](Lecture%2017%20Multitask%20Learning%200188e02918c6454fb343a38a78d5e88d/Untitled%206.png)
+                <img src="pics_lecture17/Untitled 6.png" width = "300" height = "200" alt="d" vertical-align=center />
 
                 - works well
                 - take a mini-batch on each task
@@ -100,7 +101,7 @@
                     - improves a little but MT is still bad
             - closing the gap by improvoing the sys
 
-                ![Lecture%2017%20Multitask%20Learning%200188e02918c6454fb343a38a78d5e88d/Untitled%207.png](Lecture%2017%20Multitask%20Learning%200188e02918c6454fb343a38a78d5e88d/Untitled%207.png)
+                <img src="pics_lecture17/Untitled 7.png" width = "500" height = "500" alt="d" vertical-align=center />
 
                 - CoVe: contextual vectors. using better word-representation model helps.
                 - using more harder tasks (as the pre-training) in the first phase of anti-curriculumn training helps.
@@ -109,7 +110,7 @@
     - XAI
         - pointers
 
-            ![Lecture%2017%20Multitask%20Learning%200188e02918c6454fb343a38a78d5e88d/Untitled%208.png](Lecture%2017%20Multitask%20Learning%200188e02918c6454fb343a38a78d5e88d/Untitled%208.png)
+            <img src="pics_lecture17/Untitled 8.png" width = "600" height = "150" alt="d" vertical-align=center />
 
     - MQAN pretrained on decaNLP
         - outperforms on new tasks like ML, NER
