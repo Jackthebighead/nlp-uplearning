@@ -1,6 +1,6 @@
 # Lecture 15: Natural Language Generation
 
-### Recap on NLG
+### **Recap on NLG**
 
 - Natural Language Generation: any setting in which we generate new text.
 - NLG is the subcomponent of: MT, Summerization, Dialogue(chit-chat and task-based), Freedom QA, Creative writing(story-telling, poetry-generation), image captioning.
@@ -12,7 +12,7 @@
 - the training of a RNN-LM
     - teacher forcing: in training time, we just feed the ground truth (of course the hidden state passed through the Encoder) as input into decoder on every time step.
 
-        ![Lecture%2015%20Natural%20Language%20Generation%20ed48fd0d6dcc433396a4cc213ef1c01e/Untitled.png](Lecture%2015%20Natural%20Language%20Generation%20ed48fd0d6dcc433396a4cc213ef1c01e/Untitled.png)
+        <img src="pics_lecture15/Untitled.png" width = "500" height = "300" alt="d" vertical-align=center />
 
 - the testing of a RNN-LM: the decoding algorithms
     - decoding algorithm: used to generate text from your trained LM.
@@ -26,7 +26,10 @@
         - small k: bias, 一错再错
         - large k: reduce some bias but more computationally expensive. Moreover, for NMT, increasing k too much may decrease BELU score (probably because of the short translations). For open-ended tasks like chit-chat dialogue, large k can make the output more generic and less relevant.
 
-### Decoding Algorithms
+
+<br>
+
+### **Decoding Algorithms**
 
 - greedy decoding
 - beam search
@@ -44,6 +47,9 @@
     - apply a temperature hyperparameter to the softmax: $P_t(w)=\frac{exp(S_w/t)}{\sum_{w\in V}exp(S_w/t)}$
         - raise the t, the P distribution will become more uniform (1/n,1/n,1/n,...,1/n), thus more diverse output.
         - lower the t, the P distribution will become more spiky (0,0,...,1,0,0,...), thus the output is less diverse.
+
+
+<br>
 
 ### NLG Tasks and NN approaches
 
@@ -74,7 +80,7 @@
         - evaluation: ROUGE
         - Recall-Oriented Understudy for Gisting Evaluation
 
-            ![Lecture%2015%20Natural%20Language%20Generation%20ed48fd0d6dcc433396a4cc213ef1c01e/Untitled%201.png](Lecture%2015%20Natural%20Language%20Generation%20ed48fd0d6dcc433396a4cc213ef1c01e/Untitled%201.png)
+            <img src="pics_lecture15/Untitled 1.png" width = "300" height = 150 alt="d" vertical-align=center />
 
             - based on n-gram overlap
             - no brevity penalty
@@ -103,7 +109,7 @@
                 - *Incorporating Copying Mechanism in Sequence-to-Sequence Learning, Gu et al, 2016* [https://arxiv.org/pdf/1603.06393.pdf](https://arxiv.org/pdf/1603.06393.pdf)
             - take an example: in this structure, there is a scala P_gen, determined by the attention context and the current decoder output. And the P_gen is the ratio of whether the output is generated or copied, the copied text is just the attention distribution from the encoder at this time step. In all, the attention mechanism kind of does 2 duties.
 
-                ![Lecture%2015%20Natural%20Language%20Generation%20ed48fd0d6dcc433396a4cc213ef1c01e/Untitled%202.png](Lecture%2015%20Natural%20Language%20Generation%20ed48fd0d6dcc433396a4cc213ef1c01e/Untitled%202.png)
+                <img src="pics_lecture15/Untitled 2.png" width = "500" height = "400" alt="d" vertical-align=center />
 
             - problem: end up copying too much and bad at overall content selection (especially when the input doc is long).
                 - *Get To The Point: Summarization with Pointer-Generator Networks, See et al, 2017* [https://arxiv.org/pdf/1704.04368.pdf](https://arxiv.org/pdf/1704.04368.pdf)
@@ -207,7 +213,9 @@
 - Non-autoregressive generation for NMT
     - generate translation parallelly.
 
-### NLG Evaluation
+<br>
+
+### **NLG Evaluation**
 
 - automatic evaluation metrics for NLG
     - n-gram overlap based: BLEU, ROUGE, METROR, F1, etc.
@@ -221,7 +229,7 @@
 - human evaluation: gold standard but slow and expensive.
     - detailed human evaluation system
 
-        ![Lecture%2015%20Natural%20Language%20Generation%20ed48fd0d6dcc433396a4cc213ef1c01e/Untitled%203.png](Lecture%2015%20Natural%20Language%20Generation%20ed48fd0d6dcc433396a4cc213ef1c01e/Untitled%203.png)
+        <img src="pics_lecture15/Untitled 3.png" width = "500" height = "300" alt="d" vertical-align=center />
 
     - possible new avenues for NLG eval?
         - corpus-level metrics: verses the example-level metrics.
@@ -229,7 +237,9 @@
         - human eval for free: gamification.
         - metrics that measure the diversity-safety tradeoff
 
-### NLG Future
+<br>
+
+### **NLG Future**
 
 - current trends in NLG
     - incorporating discrete latent variables into NLG

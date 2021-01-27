@@ -33,6 +33,8 @@
     - parallels well
 - FFNN: computing new features
 
+<br>
+
 ### **Text Generation**
 
 - convolutional layers have been successful in text generation. Can attention do the better?
@@ -90,6 +92,8 @@
         - Checkpoint-averaging
         - Label smoothing
         - Auto-regressive decoding with beam search and length biasing
+
+<br>
 
 ### **Self-similarity, Image and Music Generation**
 
