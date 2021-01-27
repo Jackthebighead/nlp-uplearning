@@ -155,3 +155,60 @@
             - go deep: stacked RNN
             - go bi-directional
             - go reversed: given a word sequence A B C in German whose transla- tion is X Y in English, instead of training the RNN using A B C → X Y, train it using C B A → X Y.
+
+
+
+<br>
+
+### **Materials 3: Understanding LSTM Networks**
+
+- [http://colah.github.io/posts/2015-08-Understanding-LSTMs/](http://colah.github.io/posts/2015-08-Understanding-LSTMs/)
+- the problem of long-term dependencies
+    - RNNs are good at retaining the information, in theory.
+    - but in practice, RNNs are only ideal when the information gap is small. When the gap grows, RNNs behave badly.
+    - this is because the vanishing gradient problem
+- LSTMs
+    - special kind of RNN, capable of learning long-term dependencies. It improves the repeating structure, use four interacting ways as a layer instead of a chain of one repeating modules.
+    - the key to LSTMs is the cell state, which is easy for information to just flow along unchanged.
+    - another highlight of LSTM is the gate function. Gates are a way to optionally let information through.
+    - details
+        - forget gate: which information from previous steps is going to forget.
+        - input gate: which information from the current input is going to learn.
+        - output gate: which information of the current cell state is going to output.
+        - cell state: the infromation stored, the infromation to remember from the past + the information learnt from the current input.
+        - hidden state: the output from the cell state.
+    - hidden output and the final output
+        - hidden output at each time step
+        - final output from one layer is the combined information of the whole input (sentence or sth). Often used as the output of the Encoder.
+- LSTM variants
+    - peephole LSTM: adds peepholes to all/some gates
+
+        <img src="pics_lecture7/Untitled 12.png" width = "300" height = "100" alt="d" vertical-align=center />
+
+    - forget/add together: Instead of separately deciding what to forget and what we should add new information to, we make those decisions together.
+
+        <img src="pics_lecture7/Untitled 13.png" width = "300" height = "100" alt="d" vertical-align=center />
+
+    - GRU
+    - Highway/Residual structures
+- stacked LSTMs
+
+    <img src="pics_lecture7/Untitled 14.png" width = "500" height = "200" alt="d" vertical-align=center />
+
+    - 在深度循环神经网络中，隐藏状态的信息不断传递至当前层的下一时间步和当前时间步的下一层
+- LSTM's disadvantages
+    - although LSTM theoratically solve the long-dependency problem by solving the vanishing gradient. In practice there is still information loss in the last LSTM hidden output of the whole input(a sentence). In all, RNNs are not inductive i.e. they may have a good memory of sequences but they are not good at generating correctly.
+    - computationally expensive
+    - And RNNs are expensive in time complexity, etc.
+- Attention: the next step.
+    - the idea is to let every step of an RNN pick information to look at from some larger collection of information.
+    - example of attention
+
+    <img src="pics_lecture7/Untitled 15.png" width = "500" height = "250" alt="d" vertical-align=center />
+
+    - attention comes from the area of NMT. in Neural Machine Translation, a commonly-used structure is called Seq2Seq. There is a Encoder and a Decoder in Seq2Seq where the Decoder uses the final hidden state of Encoder (recognized as the summary of the input sentence) as the initial hidden state of the whole translation. (Alternatively we can use the final hidden output as the input in every step of Decoder).
+    - but instead of that, in every step of the Decoder we can actually do better by looking at every step's hidden output of the Encoder, weighted average them as the attention output.
+    - in his example, attention mechanism is a support for the LSTM.
+    - later, attention replaces LSTMs and RNNs, Transformer take places.
+    - attention variants: soft attention, hard attention, local attention, self attention.
+
