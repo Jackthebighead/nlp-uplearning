@@ -8,17 +8,19 @@ This repository records a self-learning process. It contains the following conte
         - learning notes: 
             - course notes (combined with paper notes) 
             - material (that i read) notes
-    - codes on assignments and experiments. 
-    - papers read during this course
+        - codes on assignments and experiments. 
+        - papers read during this course
+
 - **PyTorch-learning**
     - in this part, there are some models that I implemented while learning PyTorch.
         - models: 
             - model oriented (ML models like lr, softmax, CV models like CNN, ResNet, NiNnet, NLP models like lSTM based LM)
-            - task oriented (in [nlp_tasks](www.baidu.com))
+            - task oriented (in [nlp_tasks](https://github.com/Jackthebighead/NLP-PyTorch-learning/tree/master/nlp_experiments))
 
 - nlp_tasks
     - in this part, I realized some nlp classical tasks/tools and wrote some tutorials (personal understandings) about them
     - it's still in progress...
+
 
 ### Resources 
 Here are my learning resources.
@@ -32,6 +34,7 @@ Here are my learning resources.
         - [Dive into Deep Learning with PyTorch](https://github.com/ShusenTang/Dive-into-DL-PyTorch)
     - NLP with PyTorch
         - [https://github.com/graykode/nlp-tutorial](https://github.com/graykode/nlp-tutorial): nlp-tutorial of many models.
+
 - By the way, for deep learning:
     - [https://nndl.github.io/](https://nndl.github.io/)
         - [https://github.com/nndl/nndl.github.io/blob/master/md/DeepGuide.md](https://github.com/nndl/nndl.github.io/blob/master/md/DeepGuide.md) Prof. QIU
