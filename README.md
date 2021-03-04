@@ -1,24 +1,33 @@
-# Learning Process on Stanford CS224n NLP with Deep Learning
+# Learning Process on NLP and PyTorch
 `Author: YUAN Yanzhe @Jackthebighead`
 
 ### Introduction
-This repository contains:
-- learning notes: 
-  - course notes (combined with paper notes) 
-  - material (that i read) notes
-- codes on assignments and experiments. 
-- papers read during this course
-- PyTorch codes
+This repository records a self-learning process. It contains the following contents:
+- **Stanford_cs224n_nlp**
+    - in this part, there are learning notes, codes and papers during learning this course.
+        - learning notes: 
+            - course notes (combined with paper notes) 
+            - material (that i read) notes
+    - codes on assignments and experiments. 
+    - papers read during this course
+- **PyTorch-learning**
+    - in this part, there are some models that I implemented while learning PyTorch.
+        - models: 
+            - model oriented (ML models like lr, softmax, CV models like CNN, ResNet, NiNnet, NLP models like lSTM based LM)
+            - task oriented (in [nlp_tasks](www.baidu.com))
+
+- nlp_tasks
+    - in this part, I realized some nlp classical tasks/tools and wrote some tutorials (personal understandings) about them
+    - it's still in progress...
 
 ### Resources 
-Here are my learning resources using during this course
+Here are my learning resources.
 - Main: NLP basic knowledge based on Stanford CS224n: NLP with Deep Learning
     - [CS224n official website containing resources](https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1194/)
     
 - Sub: learning PyTorch by assignments
     - PyTorch official doc: [https://pytorch.org/docs/stable/torch.html](https://pytorch.org/docs/stable/torch.html)
     - tutorials
-        - [https://github.com/yunjey/pytorch-tutorial](https://github.com/yunjey/pytorch-tutorial)
         - [Dive into Deep Learning](https://zh.d2l.ai/)
         - [Dive into Deep Learning with PyTorch](https://github.com/ShusenTang/Dive-into-DL-PyTorch)
     - NLP with PyTorch
