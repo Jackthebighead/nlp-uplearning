@@ -17,7 +17,7 @@ This repository records a self-learning process. It contains the following conte
             - model oriented (ML models like lr, softmax, CV models like CNN, ResNet, NiNnet, NLP models like lSTM based LM)
             - task oriented (in [nlp_tasks](https://github.com/Jackthebighead/NLP-PyTorch-learning/tree/master/nlp_experiments))
 
-- nlp_tasks
+- **nlp_tasks**
     - in this part, I realized some nlp classical tasks/tools and wrote some tutorials (personal understandings) about them
     - it's still in progress...
 
