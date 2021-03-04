@@ -2,7 +2,7 @@
 
 `Author: YUAN Yanzhe`
 
-Learn PyTorch during CS224n course. This folder contains the folowing:
+Learn PyTorch. This folder contains the folowing:
 
 - Utils: some useful tools.
 - models: realize some ML&DL models using PyTorch.
