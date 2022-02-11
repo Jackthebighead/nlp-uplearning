@@ -1,5 +1,5 @@
 # Learning Process on NLP and PyTorch
-`Author: YUAN Yanzhe @Jackthebighead`
+
 
 ### Introduction
 This repository records a self-learning process. It contains the following contents:
