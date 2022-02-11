@@ -1,6 +1,5 @@
 ### PyTorch Stuff
 
-`Author: YUAN Yanzhe`
 
 Learn PyTorch. This folder contains the folowing:
 
